@@ -3,6 +3,7 @@
  * Projet : Projet_LO21
  * Fichier : knowledge.h
  * Auteur : Jean Delepine
+ * test
  * =============================================================================
  */
 #ifndef KNOWLEDGE_H
