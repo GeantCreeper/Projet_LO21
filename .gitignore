@@ -1,0 +1,9 @@
+# objets compilés
+*.o
+# exécutables
+a.out
+main
+# dossiers IDE/temp
+.vscode/
+.idea/
+*~
