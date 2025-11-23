@@ -3,7 +3,6 @@
  * Projet : Projet_LO21
  * Fichier : knowledge.h
  * Auteur : Jean Delepine
- * gaga
  * =============================================================================
  */
 #ifndef KNOWLEDGE_H
