@@ -42,7 +42,5 @@ int main(void){
             default:
                 printf("Invalid option. Please try again.\n");
         }
-    }
-
-    
+    }  
 }
