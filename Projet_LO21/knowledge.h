@@ -10,6 +10,7 @@
 #include <stdbool.h>
 
 typedef struct {
+    bool knowledge;
 } BC;
 
 BC createEmptyKnowledge();
