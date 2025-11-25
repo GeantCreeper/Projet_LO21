@@ -7,14 +7,23 @@
  */
 #ifndef KNOWLEDGE_H
 #define KNOWLEDGE_H
-#include <stdbool.h>
+
+#include "header.h"
 
 typedef struct {
-    bool knowledge;
-} BC;
+    Proposition *head;
+    Proposition *tail;
+    int elementcount;
+} BF;
 
-BC createEmptyKnowledge();
-BC addRuleToKnowledge();
-bool RuleHeadInKnowledge();
+BF createEmptyBF(void);
+BF emptyBF(BF l);
+BF insertFactTail(BF l, Proposition p);
+BF removeFactHead(BF l);
+BF removeFactTail(BF l);
+Regle accessBFHead(BF l);
+void displayFacts(BF l); /* affichage sans modifier */
+
+deduceFacts(BF facts, BC knowledgeBase, BF deducted);
 
 #endif

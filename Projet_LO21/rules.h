@@ -7,8 +7,8 @@
  */
 #ifndef RULES_H
 #define RULES_H
-#include <stdbool.h>
-#include <stdlib.h>
+
+#include "header.h"
 
 /* Proposition (liste doublement chaînée) */
 typedef struct proposition {
@@ -24,16 +24,10 @@ typedef struct {
     int elementcount;
 } Premisse;
 
-/* Conclusion */
-typedef struct {
-    char name;
-    bool value;
-} Conclusion;
-
 /* Règle : conclusion + prémisse (liste de propositions) */
 typedef struct rule {
     Premisse premisse;
-    Conclusion conclusion;
+    Proposition conclusion;
     struct rule *next;
     struct rule *previous;
 } Regle;
@@ -42,30 +36,35 @@ typedef struct {
     Regle *head;
     Regle *tail;
     int elementcount;
-} ListofRules;
+} BC;
 
-/* Règles */
-ListofRules createEmptyRule(void);
-ListofRules emptyRules(ListofRules l);
-Regle* newRule(const Premisse pre, const Conclusion c, Regle* next, Regle* previous);
-ListofRules insertRuleTail(ListofRules l, Regle r);
-ListofRules removeRuleHead(ListofRules l);
-ListofRules removeRuleTail(ListofRules l);
-Regle* findRuleByConclusion(const ListofRules l, char name);
-void displayRules(const ListofRules l); /* affichage sans modifier */
+/* Propositions */
+Proposition* newProposition(char name, bool value, Proposition* next, Proposition* previous);
+bool isPropositionInPremisse(Premisse p, char name);
+Proposition createConclusion(char name, bool value);
+Proposition accessConclusion(BC rules, char name);
 
-/* Prémisses / propositions */
+/* Prémisses */
 Premisse createEmptyPremisse(void);
 Premisse emptyPremisse(Premisse p);
-Proposition* newProposition(char name, bool value, Proposition* next, Proposition* previous);
 Premisse addPropTail(Premisse p, Proposition prop);
 Premisse removeProposition(Premisse p, char name);
-bool isPropositionInPremisse(Premisse p, char name);
 bool isPremisseEmpty(Premisse p);
 Proposition accessPremisseHead(Premisse p);
 
-/* Conclusion */
-Conclusion createConclusion(char name, bool value);
-Conclusion accessConclusion(ListofRules rules, char name);
+
+
+/* Règles */
+Regle* newRule(const Premisse pre, const Proposition c, Regle* next, Regle* previous);
+Regle createEmptyRule(void);
+
+/* Base de connaissances */
+BC createEmptyBC(void);
+BC emptyBC(BC l);
+BC insertRuleTail(BC l, Regle r);
+BC removeRuleHead(BC l);
+BC removeRuleTail(BC l);
+Regle accessBCHead(BC l);
+void displayRules(BC l); /* affichage sans modifier */
 
 #endif /* RULES_H */

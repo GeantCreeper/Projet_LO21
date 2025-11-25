@@ -6,12 +6,7 @@
  * =============================================================================
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include "rules.h"
-#include "knowledge.h"
+#include "header.h"
 
 int main(void){
     bool deducted = NULL;
@@ -31,7 +26,7 @@ int main(void){
                 // Add fact to knowledge base
                 break;
             case 2:
-                // Deduce new facts
+                deduceFacts(NULL, NULL);
                 break;
             case 3:
                 // Show knowledge base
