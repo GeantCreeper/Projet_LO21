@@ -65,6 +65,6 @@ BC insertRuleTail(BC l, Regle r);
 BC removeRuleHead(BC l);
 BC removeRuleTail(BC l);
 Regle accessBCHead(BC l);
-void displayRules(BC l); /* affichage sans modifier */
+void displayRules(BC l);
 
 #endif /* RULES_H */

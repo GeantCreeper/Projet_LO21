@@ -5,8 +5,8 @@
  * Auteur : Jean Delepine
  * =============================================================================
  */
-#ifndef KNOWLEDGE_H
-#define KNOWLEDGE_H
+#ifndef FACTS_H
+#define FACTS_H
 
 #include "header.h"
 
@@ -21,9 +21,9 @@ BF emptyBF(BF l);
 BF insertFactTail(BF l, Proposition p);
 BF removeFactHead(BF l);
 BF removeFactTail(BF l);
-Regle accessBFHead(BF l);
+Proposition accessBFHead(BF l);
 void displayFacts(BF l); /* affichage sans modifier */
 
-deduceFacts(BF facts, BC knowledgeBase, BF deducted);
+BF deduceFacts(BF fact_base, BC knowledge_base);
 
 #endif

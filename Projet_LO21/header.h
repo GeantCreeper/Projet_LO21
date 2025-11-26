@@ -8,6 +8,6 @@
 #include <string.h>
 
 #include "rules.h"
-#include "knowledge.h"
+#include "facts.h"
 
 #endif // HEADER_H

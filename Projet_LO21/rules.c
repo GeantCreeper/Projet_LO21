@@ -75,7 +75,7 @@ Premisse emptyPremisse(Premisse p) {
 }
 
 Premisse addPropTail(Premisse p, Proposition prop){
-    Proposition *newel = newElement(p, NULL, NULL);
+    Proposition *newel = newProposition(prop.name, prop.value, NULL, NULL);
     if (p.head == NULL) {
         p.head = p.tail = newel;
         p.elementcount++;
@@ -119,7 +119,10 @@ bool isPremisseEmpty(Premisse p) {
 }
 
 Proposition accessPremisseHead(Premisse p) {
-    return *p.head;
+    if (p.head != NULL) {
+        return *p.head;
+    }
+    return;
 }
 
 Regle* newRule(const Premisse pre, const Proposition c, Regle* next, Regle* previous) {
@@ -212,7 +215,10 @@ BC removeRuleTail(BC l) {
 }
 
 Regle accessBCHead(BC l) {
-    return *l.head;
+    if (l.head != NULL) {
+        return *l.head;
+    }
+    return createEmptyRule();
 }
 
 void displayRules(BC l) {
