@@ -122,7 +122,7 @@ Proposition accessPremisseHead(Premisse p) {
     if (p.head != NULL) {
         return *p.head;
     }
-    return;
+    return *newProposition('\0', false, NULL, NULL);
 }
 
 Regle* newRule(const Premisse pre, const Proposition c, Regle* next, Regle* previous) {
