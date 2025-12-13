@@ -39,10 +39,14 @@ Proposition createConclusion(char name) {
 }
 
 Proposition accessConclusion(BC rules, char name) {
-    while (rules.head ->conclusion.name != name){
-        rules.head = rules.head -> next;
+    Regle *r = rules.head;
+    while (r != NULL) {
+        if (r->conclusion.name == name) {
+            return r->conclusion;
+        }
+        r = r->next;
     }
-    return rules.head -> conclusion;
+    return createConclusion('\0');
 }
 
 Premisse createEmptyPremisse(void) {
@@ -120,7 +124,7 @@ Proposition accessPremisseHead(Premisse p) {
     if (p.head != NULL) {
         return *p.head;
     }
-    return *newProposition('\0', NULL, NULL);
+    return createConclusion('\0');
 }
 
 Regle* newRule(const Premisse pre, const Proposition c, Regle* next, Regle* previous) {
@@ -150,21 +154,15 @@ BC createEmptyBC(void) {
 }
 
 BC emptyBC(BC l) {
-    if (l.head == NULL) {
-        return l;
+    Regle *r = l.head;
+    while (r != NULL) {
+        emptyPremisse(r->premisse);
+        Regle *tmp = r->next;
+        free(r);
+        r = tmp;
     }
-    else {
-        Regle *r = l.head;
-        Regle *tmp = NULL;
-        while (r != NULL) {
-            tmp = r -> next;
-            free(r);
-            r = tmp;
-        }
-        l.head = NULL;
-        l.tail = NULL;
-        l.elementcount = 0;
-    }
+    l.head = l.tail = NULL;
+    l.elementcount = 0;
     return l;
 }
 

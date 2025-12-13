@@ -8,22 +8,31 @@
 
 #include "header.h"
 
-BF deduceFacts(BF fact_base, BC knowledge_base) { 
+BF deduceFacts(BF facts, BC knowledge) {
     BF deducted = createEmptyBF();
-    for (int i = 0; i < fact_base.elementcount; i++) {
-        for (int j = 0; j < knowledge_base.elementcount; j++) {
-            if (fact_base.head -> name == knowledge_base.head -> premisse.head -> name) {
-                removeFactHead(fact_base);
-                knowledge_base.head -> premisse = removeProposition(knowledge_base.head -> premisse, fact_base.head -> name);
-                if (isPremisseEmpty(knowledge_base.head -> premisse)) {
-                    insertFactTail(fact_base, knowledge_base.head -> conclusion);
-                    insertFactTail(deducted, knowledge_base.head -> conclusion);
-                }
+    Regle *r = knowledge.head;
+    while (r != NULL) {
+        Proposition *p = r->premisse.head;
+        bool state = true;
+
+        while (p != NULL) {
+            if (!isPropositionInPremisse(
+                    (Premisse){facts.head, facts.tail, facts.elementcount},
+                    p->name)) {
+                state = false;
+                break;
             }
+            p = p->next;
         }
+        if (state) {
+            facts = insertFactTail(facts, r->conclusion);
+            deducted = insertFactTail(deducted, r->conclusion);
+        }
+        r = r->next;
     }
     return deducted;
 }
+
 
 BF createEmptyBF(void) {
     BF l;

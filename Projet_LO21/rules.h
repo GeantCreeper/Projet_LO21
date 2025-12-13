@@ -52,7 +52,7 @@ Proposition accessPremisseHead(Premisse p);
 
 
 /* Règles */
-Regle* newRule(const Premisse pre, const Proposition c, Regle* next, Regle* previous);
+Regle* newRule(Premisse pre, Proposition c, Regle* next, Regle* previous);
 Regle createEmptyRule(void);
 
 /* Base de connaissances */
