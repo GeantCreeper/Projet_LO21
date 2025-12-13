@@ -8,10 +8,9 @@
 
 #include "header.h"
 
-Proposition* newProposition(char name, bool value, Proposition* next, Proposition* previous) {
+Proposition* newProposition(char name, Proposition* next, Proposition* previous) {
     Proposition *newel = (Proposition *) malloc(sizeof(Proposition));
     newel -> name = name;
-    newel -> value = value;
     newel -> next = next;
     newel -> previous = previous;
     return newel;
@@ -31,10 +30,9 @@ bool isPropositionInPremisse(Premisse p, char name) {
     return isPropositionInPremisse(rest, name);
 }
 
-Proposition createConclusion(char name, bool value){
+Proposition createConclusion(char name) {
     Proposition conclusion;
     conclusion.name = name;
-    conclusion.value = value;
     conclusion.next = NULL;
     conclusion.previous = NULL;
     return conclusion;
@@ -74,8 +72,8 @@ Premisse emptyPremisse(Premisse p) {
     return p;
 }
 
-Premisse addPropTail(Premisse p, Proposition prop){
-    Proposition *newel = newProposition(prop.name, prop.value, NULL, NULL);
+Premisse addPropTail(Premisse p, Proposition prop) {
+    Proposition *newel = newProposition(prop.name, NULL, NULL);
     if (p.head == NULL) {
         p.head = p.tail = newel;
         p.elementcount++;
@@ -88,7 +86,7 @@ Premisse addPropTail(Premisse p, Proposition prop){
     return p;
 }
 
-Premisse removeProposition(Premisse p, char name){
+Premisse removeProposition(Premisse p, char name) {
     Proposition *current = p.head;
     while (current != NULL) {
         if (current -> name == name) {
@@ -122,7 +120,7 @@ Proposition accessPremisseHead(Premisse p) {
     if (p.head != NULL) {
         return *p.head;
     }
-    return *newProposition('\0', false, NULL, NULL);
+    return *newProposition('\0', NULL, NULL);
 }
 
 Regle* newRule(const Premisse pre, const Proposition c, Regle* next, Regle* previous) {
@@ -137,7 +135,7 @@ Regle* newRule(const Premisse pre, const Proposition c, Regle* next, Regle* prev
 Regle createEmptyRule(void) {
     Regle r;
     r.premisse = createEmptyPremisse();
-    r.conclusion = createConclusion('\0', false);
+    r.conclusion = createConclusion('\0');
     r.next = NULL;
     r.previous = NULL;
     return r;
@@ -232,13 +230,13 @@ void displayRules(BC l) {
         printf("Rule : IF ");
         Proposition *p = r -> premisse.head;
         while (p != NULL) {
-            printf("%c=%s ", p -> name, p -> value ? "TRUE" : "FALSE");
+            printf("%c ", p -> name);
             p = p -> next;
             if (p != NULL) {
                 printf("AND ");
             }
         }
-        printf("-> %c=%s\n", r -> conclusion.name, r -> conclusion.value ? "TRUE" : "FALSE");
+        printf("-> %c\n", r -> conclusion.name);
         r = r -> next;
     }
 }

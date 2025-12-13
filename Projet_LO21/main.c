@@ -10,24 +10,19 @@
 
 BF addFact(BF facts) {
     char name;
-    int value;
     printf("Fact name (ex: A) : ");
     scanf(" %c", &name);
-    printf("Value (true, false) : ");
-    scanf("%d", &value);
 
-    Proposition p = createConclusion(name, value);
+    Proposition p = createConclusion(name);
     facts = insertFactTail(facts, p);
 
-    printf("Fact added : %c=%s\n", name, value ? "TRUE" : "FALSE");
+    printf("Fact added : %c\n", name);
     return facts;
 }
 
 BC addRule(BC knowledge) {
     Premisse prem = createEmptyPremisse();
-    Proposition premProp;
     char name;
-    int value;
     char cont;
 
     printf("Creation of a rule : IF ... THEN ...\n");
@@ -35,11 +30,8 @@ BC addRule(BC knowledge) {
     do {
         printf("Name of the Premisse : ");
         scanf(" %c", &name);
-        printf("Value (true, false) : ");
-        scanf("%d", &value);
-
-        premProp = createConclusion(name, value);
-        prem = addPropTail(prem, premProp);
+        Proposition *prop = newProposition(name, NULL, NULL);
+        prem = addPropTail(prem, *prop);
 
         printf("Add another Premisse ? (y/n) : ");
         scanf(" %c", &cont);
@@ -47,10 +39,7 @@ BC addRule(BC knowledge) {
 
     printf("Name of the conclusion : ");
     scanf(" %c", &name);
-    printf("Value (true, false) : ");
-    scanf("%d", &value);
-
-    Proposition conclusion = createConclusion(name, value);
+    Proposition conclusion = createConclusion(name);
 
     Regle r = createEmptyRule();
     r.premisse = prem;
@@ -59,6 +48,7 @@ BC addRule(BC knowledge) {
     knowledge = insertRuleTail(knowledge, r);
 
     printf("Rule added\n");
+    return knowledge;
 }
 
 int main(void){
@@ -81,7 +71,7 @@ int main(void){
         
         switch (choice) {
             case 1:
-                knowledge = (knowledge);
+                knowledge = addRule(knowledge);
                 break;
             case 2:
                 facts = addFact(facts);

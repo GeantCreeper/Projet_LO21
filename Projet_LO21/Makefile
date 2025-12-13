@@ -13,3 +13,7 @@ clean:
 	rm -f $(OBJ_DIR)/*.o
 clean-all:
 	rm -f $(OBJ_DIR)/*.o $(BIN_DIR)/*
+	rmdir $(OBJ_DIR) $(BIN_DIR) 2> /dev/null || true
+run:
+	make
+	./$(BIN_DIR)/main

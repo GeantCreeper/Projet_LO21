@@ -8,8 +8,6 @@
 #ifndef FACTS_H
 #define FACTS_H
 
-#include "header.h"
-
 typedef struct {
     Proposition *head;
     Proposition *tail;

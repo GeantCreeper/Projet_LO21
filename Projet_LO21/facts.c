@@ -53,7 +53,7 @@ BF emptyBF(BF l) {
 }
 
 BF insertFactTail(BF l, Proposition p) {
-    Proposition *newel = newProposition(p.name, p.value, NULL, NULL);
+    Proposition *newel = newProposition(p.name, NULL, NULL);
     if (l.head == NULL) {
         l.head = l.tail = newel;
         l.elementcount++;
@@ -100,7 +100,7 @@ Proposition accessBFHead(BF l) {
     if (l.head != NULL) {
         return *l.head;
     }
-    return createConclusion('\0', false);   
+    return createConclusion('\0');   
 }
 
 void displayFacts(BF l) {
@@ -110,7 +110,7 @@ void displayFacts(BF l) {
     }
     Proposition *p = l.head;
     while (p != NULL) {
-        printf("%c=%s\n", p -> name, p -> value ? "TRUE" : "FALSE");
+        printf("%c\n", p -> name);
         p = p -> next;
     }
 }

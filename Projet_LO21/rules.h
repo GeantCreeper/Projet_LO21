@@ -8,12 +8,9 @@
 #ifndef RULES_H
 #define RULES_H
 
-#include "header.h"
-
 /* Proposition (liste doublement chaînée) */
 typedef struct proposition {
     char name;
-    bool value;
     struct proposition *next;
     struct proposition *previous;
 } Proposition;
@@ -39,9 +36,9 @@ typedef struct {
 } BC;
 
 /* Propositions */
-Proposition* newProposition(char name, bool value, Proposition* next, Proposition* previous);
+Proposition* newProposition(char name, Proposition* next, Proposition* previous);
 bool isPropositionInPremisse(Premisse p, char name);
-Proposition createConclusion(char name, bool value);
+Proposition createConclusion(char name);
 Proposition accessConclusion(BC rules, char name);
 
 /* Prémisses */
