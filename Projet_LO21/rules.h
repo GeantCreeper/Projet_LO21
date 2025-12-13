@@ -10,7 +10,7 @@
 
 /* Proposition (liste doublement chaînée) */
 typedef struct proposition {
-    char name;
+    char name[32];
     struct proposition *next;
     struct proposition *previous;
 } Proposition;

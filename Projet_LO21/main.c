@@ -9,9 +9,9 @@
 #include "header.h"
 
 BF addFact(BF facts) {
-    char name;
+    char name[32];
     printf("Fact name (ex: A) : ");
-    scanf(" %c", &name);
+    scanf(" %31s", &name);
 
     Proposition p = createConclusion(name);
     facts = insertFactTail(facts, p);
@@ -22,19 +22,19 @@ BF addFact(BF facts) {
 
 BC addRule(BC knowledge) {
     Premisse prem = createEmptyPremisse();
-    char name;
+    char name[32];
     char cont;
 
     printf("Creation of a rule : IF ... THEN ...\n");
 
     do {
         printf("Name of the Premisse : ");
-        scanf(" %c", &name);
+        scanf(" %31s", &name);
         Proposition *prop = newProposition(name, NULL, NULL);
         prem = addPropTail(prem, *prop);
 
         printf("Add another Premisse ? (y/n) : ");
-        scanf(" %c", &cont);
+        scanf(" %31s", &cont);
     } while (cont == 'y' || cont == 'Y');
 
     printf("Name of the conclusion : ");
