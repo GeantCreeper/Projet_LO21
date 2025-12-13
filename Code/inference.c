@@ -5,19 +5,19 @@ void inferenceEngine(BC *knowledgeBase, Premisse *factBase) {
 
     do {
         newFactAdded = false;
-        BC *currentRuleNode = knowledgeBase;
+        BC *currentRule = knowledgeBase;
 
-        while (currentRuleNode != NULL) {
-            Rule currentRule = currentRuleNode -> regle;
+        while (currentRule != NULL) {
+            Rule current = currentRule -> regle;
 
-            if (areAllPremissesTrue(currentRule, *factBase)) {
-                if (!isPropositionInPremisse(*factBase, currentRule.conclusion)) {
-                    addProposition(factBase, currentRule.conclusion);
+            if (areAllPremissesTrue(current, *factBase)) {
+                if (!isPropositionInPremisse(*factBase, current.conclusion)) {
+                    addProposition(factBase, current.conclusion);
                     newFactAdded = true;
                 }
             }
 
-            currentRuleNode = currentRuleNode -> next;
+            currentRule = currentRule-> next;
         }
     } while (newFactAdded);
 }
