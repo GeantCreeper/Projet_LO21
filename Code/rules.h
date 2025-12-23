@@ -7,5 +7,6 @@ Rule createRule();
 void addPropositionToPremisse(Rule *r, char *proposition);
 void createConclusion(Rule *r, char *proposition);
 char *accessConclusion(Rule r);
+void deleteRule(Rule *r);
 
 #endif

@@ -19,3 +19,12 @@ void createConclusion(Rule *r, char *proposition) {
 char *accessConclusion(Rule r) {
     return r.conclusion;
 }
+
+void deleteRule(Rule *r) {
+    if (r -> premisse != NULL) {
+        deletePremisse(r -> premisse);
+        free(r -> premisse);
+        r -> premisse = NULL;
+    }
+    strcpy(r -> conclusion, "");
+}

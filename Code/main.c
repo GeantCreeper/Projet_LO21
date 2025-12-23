@@ -12,9 +12,11 @@ int main(void) {
         printf("1. Add rule to knowledge base\n");
         printf("2. Add fact to fact base\n");
         printf("3. Deduce new facts\n");
-        printf("4. Show facts\n");
-        printf("5. Show rules\n");
-        printf("6. Exit\n");
+        printf("4. Show rules\n");
+        printf("5. Show facts\n");
+        printf("6. Delete rules\n");
+        printf("7. Delete facts\n");
+        printf("8. Exit\n");
         printf("Choose an option: ");
 
         int choice;
@@ -35,34 +37,46 @@ int main(void) {
                 break;
 
             case 4: {
-                printf("Facts:\n");
-                Proposition *p = factBase.head;
-                while (p != NULL) {
-                    printf("- %s\n", p->proposition);
-                    p = p->next;
+                printf("Rules:\n");
+                BC *curr = knowledgeBase;
+                while (curr != NULL) {
+                    Rule r = curr -> regle;
+                    printf("IF ");
+                    Proposition *prop = r.premisse -> head;
+                    while (prop != NULL) {
+                        printf("%s", prop -> proposition);
+                        if (prop -> next != NULL) printf(" AND ");
+                        prop = prop -> next;
+                    }
+                    printf(" THEN %s\n", r.conclusion);
+                    curr = curr -> next;
                 }
                 break;
             }
 
             case 5: {
-                printf("Rules:\n");
-                BC *curr = knowledgeBase;
-                while (curr != NULL) {
-                    Rule r = curr->regle;
-                    printf("IF ");
-                    Proposition *prop = r.premisse->head;
-                    while (prop != NULL) {
-                        printf("%s", prop->proposition);
-                        if (prop->next != NULL) printf(" AND ");
-                        prop = prop->next;
-                    }
-                    printf(" THEN %s\n", r.conclusion);
-                    curr = curr->next;
+                printf("Facts:\n");
+                Proposition *p = factBase.head;
+                while (p != NULL) {
+                    printf("- %s\n", p -> proposition);
+                    p = p -> next;
                 }
                 break;
             }
+            
+            case 6: {
+                deleteKnowledgeBase(&knowledgeBase);
+                printf("All rules have been deleted.\n");
+                break;
+            }
 
-            case 6:
+            case 7: {
+                deletePremisse(&factBase);
+                printf("All facts have been deleted.\n");
+                break;
+            }
+
+            case 8:
                 printf("Exiting...\n");
                 return 0;
 

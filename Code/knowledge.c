@@ -14,7 +14,7 @@ BC* addRuleToKnowledgeBase(BC *knowledgeBase, Rule r) {
     else {
         BC *tmp = knowledgeBase;
         while (tmp->next != NULL)
-            tmp = tmp->next;
+            tmp = tmp -> next;
         tmp -> next = newRule;
         return knowledgeBase;
     }
@@ -26,4 +26,18 @@ Rule headOfKnowledgeBase(BC *knowledgeBase) {
         return empty;
     }
     return knowledgeBase -> regle;
+}
+
+void deleteKnowledgeBase(BC **knowledgeBase) {
+    BC *current = *knowledgeBase;
+    BC *next;
+
+    while (current != NULL) {
+        next = current -> next;
+        deleteRule(&current -> regle);
+        free(current);
+        current = next;
+    }
+
+    *knowledgeBase = NULL;
 }

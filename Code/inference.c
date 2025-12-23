@@ -17,7 +17,7 @@ void inferenceEngine(BC *knowledgeBase, Premisse *factBase) {
                 }
             }
 
-            currentRule = currentRule-> next;
+            currentRule = currentRule -> next;
         }
     } while (newFactAdded);
 }
@@ -26,11 +26,11 @@ bool areAllPremissesTrue(Rule r, Premisse factBase) {
     if (r.premisse == NULL)
         return true;
 
-    Proposition *req = r.premisse->head;
+    Proposition *req = r.premisse -> head;
     while (req != NULL) {
-        if (!isPropositionInPremisse(factBase, req->proposition))
+        if (!isPropositionInPremisse(factBase, req -> proposition))
             return false;
-        req = req->next;
+        req = req -> next;
     }
     return true;
 }

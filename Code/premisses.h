@@ -9,5 +9,6 @@ void removeProposition(Premisse *p, char *proposition);
 bool isPremisseEmpty(Premisse p);
 void addProposition(Premisse *p, char *proposition);
 Proposition accessPremisseHead(Premisse p);
+void deletePremisse(Premisse *p);
 
 #endif

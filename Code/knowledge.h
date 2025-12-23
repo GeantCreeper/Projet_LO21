@@ -6,5 +6,6 @@
 BC* createKnowledgeBase();
 BC* addRuleToKnowledgeBase(BC *knowledgeBase, Rule r);
 Rule headOfKnowledgeBase(BC *knowledgeBase);
+void deleteKnowledgeBase(BC **knowledgeBase);
 
 #endif
