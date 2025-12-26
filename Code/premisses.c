@@ -51,7 +51,7 @@ void addProposition(Premisse *p, char *proposition) {// ajoute une proposition a
         while (current -> next != NULL) {// parcourt la liste jusqu'a la derniere proposition
             current = current -> next;
         }
-        current -> next = newProp;
+        current -> next = newProp;// ajoute la nouvelle proposition a la fin de la liste
     }
 }
 

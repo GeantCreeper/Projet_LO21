@@ -21,7 +21,7 @@ void addPropositionToPremisse(Rule *r, char *proposition);
 /**
  * @brief cree l'objet conclusion d'une regle
  * 
- * @param r 
+ * @param r regle
  * @param proposition 
  */
 void createConclusion(Rule *r, char *proposition);
