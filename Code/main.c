@@ -21,7 +21,13 @@ int main(void) {
         printf("Choose an option: ");
 
         int choice;
-        scanf("%d", &choice);
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input. Please enter a number.\n");
+            // Vide le tampon
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF);
+            continue;
+        }
 
         switch (choice) {
             case 1:// Ajouter une règle
@@ -106,6 +112,9 @@ void addRule(BC **knowledgeBase) {
         // Demander à l'utilisateur s'il veut ajouter une autre prémisse
         printf("Do you want to add another premise? (y/n): ");
         scanf(" %c", &addMorePremises);  // Notez l'espace avant %c pour consommer les espaces ou sauts de ligne restants dans le tampon
+        // Vide le tampon
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
 
     } while (addMorePremises == 'y' || addMorePremises == 'Y');
 
