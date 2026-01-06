@@ -109,11 +109,14 @@ void addRule(BC **knowledgeBase) {
         scanf("%s", premise);  // Demander la prémisse
         addPropositionToPremisse(&newRule, premise);  // Ajouter la prémisse à la règle
 
+        // Vide le tampon
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
+
         // Demander à l'utilisateur s'il veut ajouter une autre prémisse
         printf("Do you want to add another premise? (y/n): ");
         scanf(" %c", &addMorePremises);  // Notez l'espace avant %c pour consommer les espaces ou sauts de ligne restants dans le tampon
         // Vide le tampon
-        int c;
         while ((c = getchar()) != '\n' && c != EOF);
 
     } while (addMorePremises == 'y' || addMorePremises == 'Y');
