@@ -23,11 +23,11 @@ int main(void) {
         int choice;
         if (scanf("%d", &choice) != 1) {
             printf("Invalid input. Please enter a number.\n");
-            // Vide le tampon
-            int c;
-            while ((c = getchar()) != '\n' && c != EOF);
             continue;
         }
+        // Vide le tampon
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
 
         switch (choice) {
             case 1:// Ajouter une règle
